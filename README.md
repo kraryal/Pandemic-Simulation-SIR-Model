@@ -29,6 +29,34 @@ Where:
 γ = recovery rate (0.1)
 N = total population (1000)
 
+## 🐍 Python Recreation & Enhancement
+
+### Advanced Implementation Beyond Excel
+To demonstrate modern data science capabilities, this project includes a **complete Python recreation** of the Excel model with enhanced features:
+
+**Key Python Enhancements:**
+- **Object-Oriented Design**: Clean, maintainable SIR model class
+- **Advanced Visualizations**: Professional matplotlib/seaborn charts  
+- **Sensitivity Analysis**: Parameter exploration beyond Excel capabilities
+- **Statistical Integration**: Scipy integration for continuous solutions
+- **Production-Ready Code**: Documented, testable, scalable implementation
+
+### Python Files
+- `sir_model.py`: Complete SIR model implementation with discrete and continuous solutions
+- `visualizations.py`: Enhanced plotting capabilities with statistical analysis  
+- `requirements.txt`: Dependencies for easy environment setup
+
+### Running the Python Analysis
+```bash
+# Install dependencies
+pip install -r python_recreation/requirements.txt
+
+# Run SIR model analysis
+python python_recreation/sir_model.py
+
+# Generate enhanced visualizations  
+python python_recreation/visualizations.py
+
 
 ### Statistical Analysis Components
 - **Binomial Distribution Modeling**: Infection probability calculations
