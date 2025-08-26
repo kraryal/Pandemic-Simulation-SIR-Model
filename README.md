@@ -43,7 +43,6 @@ flowchart LR
     I[Infected] -->|Recovery (gamma)| R[Recovered]
 
 
-
 ### Statistical Analysis Components
 - **Binomial Distribution Modeling**: Infection probability calculations
 - **Expected Value Analysis**: E(X) = np = 20 × 0.02 = 0.4 expected infections
