@@ -102,22 +102,13 @@ Nt = St + It + Rt (population conservation)
 - Business decision support through quantitative analysis
 - Professional technical documentation and presentation
 
-## 📁 Repository Structure
+- **`README.md`** → High-level overview of the project and instructions.  
+- **`excel_model/`** → Excel-based SIR model with all epidemic calculations.  
+- **`docs/`** → In-depth technical documentation covering the mathematical methodology and results.  
+- **`results/`** → Visual outputs, including epidemic curves and probability distribution plots.  
+- **`python_recreation/`** → (Optional) Python scripts replicating the SIR model with enhanced visualization tools.  
+- **`presentation/`** → Executive summary slides for quick project communication.  
 
-Pandemic-Simulation-SIR-Model/
-├── 📄 README.md                    # Comprehensive project overview
-├── 📊 excel_model/                 # Excel implementation files
-│   └── pandemic_simulation.xlsx   # Complete SIR model with calculations
-├── 📚 docs/                        # Technical documentation
-│   └── methodology.pdf            # Mathematical methodology and results
-├── 📈 results/                     # Analysis outputs and visualizations
-│   ├── sir_curve.png              # SIR epidemic curve visualization
-│   └── probability_distribution.png # Binomial distribution analysis
-├── 🐍 python_recreation/          # Python implementation (optional)
-│   ├── sir_model.py               # Python SIR model recreation
-│   └── visualizations.py          # Enhanced data visualizations
-└── 📋 presentation/               # Summary materials
-└── project_summary.pdf        # Executive summary slides
 
 ## 🚀 Business Relevance for Data Science
 
