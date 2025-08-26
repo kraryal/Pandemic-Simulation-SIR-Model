@@ -41,6 +41,7 @@ $$
 flowchart LR
     S[Susceptible] -->|Infection beta| I[Infected]
     I[Infected] -->|Recovery gamma| R[Recovered]
+```
 
 ### Statistical Analysis Components
 - **Binomial Distribution Modeling**: Infection probability calculations
