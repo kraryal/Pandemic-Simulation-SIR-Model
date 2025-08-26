@@ -18,16 +18,40 @@ Developed during Georgia Tech MS Analytics coursework (ISYE 6644 - Simulation), 
 
 ## 🔬 Technical Methodology
 
-### Compartmental Modeling Approach
+## 🧮 SIR Model Formulation
 
-Susceptible (S) → Infected (I) → Recovered (R)
-dS/dt = -βSI/N
-dI/dt = βSI/N - γI
-dR/dt = γI
+The classic **SIR (Susceptible → Infected → Recovered)** model is described by the following system of differential equations:
+
+\[
+\frac{dS}{dt} = -\beta \frac{SI}{N}
+\]
+
+\[
+\frac{dI}{dt} = \beta \frac{SI}{N} - \gamma I
+\]
+
+\[
+\frac{dR}{dt} = \gamma I
+\]
+
 Where:
-β = transmission rate (0.5)
-γ = recovery rate (0.1)
-N = total population (1000)
+
+- \( S \) = Susceptible population  
+- \( I \) = Infected population  
+- \( R \) = Recovered population  
+- \( N \) = Total population (\(1000\))  
+- \( \beta \) = Transmission rate (\(0.5\))  
+- \( \gamma \) = Recovery rate (\(0.1\))  
+
+---
+
+### 🔄 Model Flow
+
+```mermaid
+flowchart LR
+    S[Susceptible] -->|Infection (β)| I[Infected]
+    I -->|Recovery (γ)| R[Recovered]
+
 
 
 ### Statistical Analysis Components
@@ -102,13 +126,22 @@ Nt = St + It + Rt (population conservation)
 - Business decision support through quantitative analysis
 - Professional technical documentation and presentation
 
-- **`README.md`** → High-level overview of the project and instructions.  
-- **`excel_model/`** → Excel-based SIR model with all epidemic calculations.  
-- **`docs/`** → In-depth technical documentation covering the mathematical methodology and results.  
-- **`results/`** → Visual outputs, including epidemic curves and probability distribution plots.  
-- **`python_recreation/`** → (Optional) Python scripts replicating the SIR model with enhanced visualization tools.  
-- **`presentation/`** → Executive summary slides for quick project communication.  
+## 📁 Repository Structure
 
+Pandemic-Simulation-SIR-Model/
+├── 📄 README.md                    # Comprehensive project overview
+├── 📊 excel_model/                 # Excel implementation files
+│   └── pandemic_simulation.xlsx   # Complete SIR model with calculations
+├── 📚 docs/                        # Technical documentation
+│   └── methodology.pdf            # Mathematical methodology and results
+├── 📈 results/                     # Analysis outputs and visualizations
+│   ├── sir_curve.png              # SIR epidemic curve visualization
+│   └── probability_distribution.png # Binomial distribution analysis
+├── 🐍 python_recreation/          # Python implementation (optional)
+│   ├── sir_model.py               # Python SIR model recreation
+│   └── visualizations.py          # Enhanced data visualizations
+└── 📋 presentation/               # Summary materials
+└── project_summary.pdf        # Executive summary slides
 
 ## 🚀 Business Relevance for Data Science
 
