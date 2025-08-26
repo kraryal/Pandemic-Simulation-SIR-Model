@@ -18,30 +18,20 @@ Developed during Georgia Tech MS Analytics coursework (ISYE 6644 - Simulation), 
 
 ## 🔬 Technical Methodology
 
-## 🧮 SIR Model Formulation
+## 🧮 SIR Model
 
-The classic **SIR (Susceptible → Infected → Recovered)** model is described by the following system of differential equations:
+The model:
 
-\[
-\frac{dS}{dt} = -\beta \frac{SI}{N}
-\]
+$$
+\begin{aligned}
+\frac{dS}{dt} &= -\beta \frac{SI}{N} \\
+\frac{dI}{dt} &= \beta \frac{SI}{N} - \gamma I \\
+\frac{dR}{dt} &= \gamma I
+\end{aligned}
+$$
 
-\[
-\frac{dI}{dt} = \beta \frac{SI}{N} - \gamma I
-\]
+**Parameters:** \( \beta = 0.5 \), \( \gamma = 0.1 \), \( N = 1000 \).
 
-\[
-\frac{dR}{dt} = \gamma I
-\]
-
-Where:
-
-- \( S \) = Susceptible population  
-- \( I \) = Infected population  
-- \( R \) = Recovered population  
-- \( N \) = Total population (\(1000\))  
-- \( \beta \) = Transmission rate (\(0.5\))  
-- \( \gamma \) = Recovery rate (\(0.1\))  
 
 ---
 
@@ -49,8 +39,8 @@ Where:
 
 ```mermaid
 flowchart LR
-    S[Susceptible] -->|Infection (β)| I[Infected]
-    I -->|Recovery (γ)| R[Recovered]
+    S[Susceptible] -->|Infection (beta)| I[Infected]
+    I -->|Recovery (gamma)| R[Recovered]
 
 
 
