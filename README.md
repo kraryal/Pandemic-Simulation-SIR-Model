@@ -40,7 +40,7 @@ $$
 ```mermaid
 flowchart LR
     S[Susceptible] -->|Infection (beta)| I[Infected]
-    I -->|Recovery (gamma)| R[Recovered]
+    I[Infected] -->|Recovery (gamma)| R[Recovered]
 
 
 
