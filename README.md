@@ -119,24 +119,18 @@ Nt = St + It + Rt (population conservation)
 
 Pandemic-Simulation-SIR-Model/
 ├── 📄 README.md                    # Comprehensive project overview
-|
-├── 📊 excel_model/                 # Excel implementation files
+├── 📊 excel_model/                # Excel implementation files
 │   └── pandemic_simulation.xlsx   # Complete SIR model with calculations
-|
-├── 📚 docs/                        # Technical documentation
+├── 📚 docs/                       # Technical documentation
 │   └── methodology.pdf            # Mathematical methodology and results
-|
-├── 📈 results/                     # Analysis outputs and visualizations
-│   ├── sir_curve.png              # SIR epidemic curve visualization
+├── 📈 results/                    # Analysis outputs and visualizations
+│   ├── sir_curve.png             # SIR epidemic curve visualization
 │   └── probability_distribution.png # Binomial distribution analysis
-|
 ├── 🐍 python_recreation/          # Python implementation (optional)
-│   ├── sir_model.py               # Python SIR model recreation
+│   ├── sir_model.py              # Python SIR model recreation
 │   └── visualizations.py          # Enhanced data visualizations
-|
 └── 📋 presentation/               # Summary materials
-|
-└── project_summary.pdf        # Executive summary slides
+    └── project_summary.pdf        # Executive summary slides
 
 ## 🚀 Business Relevance for Data Science
 
