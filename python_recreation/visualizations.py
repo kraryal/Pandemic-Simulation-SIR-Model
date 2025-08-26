@@ -1,7 +1,7 @@
 """
-Enhanced Visualizations for SIR Pandemic Model
-==============================================
-Advanced plotting capabilities beyond Excel charts
+Enhanced Visualizations for Corrected SIR Pandemic Model
+=======================================================
+Professional visualizations with realistic results
 Krishna Aryal - Georgia Tech MS Analytics
 """
 
@@ -12,50 +12,56 @@ from scipy.stats import binom
 import pandas as pd
 
 # Set professional style
-plt.style.use('seaborn-v0_8-whitegrid')
-sns.set_palette("husl")
+plt.style.use('default')  # More reliable than seaborn
+plt.rcParams['figure.facecolor'] = 'white'
+plt.rcParams['axes.facecolor'] = 'white'
 
-def create_sir_visualization(results, save_path='results/sir_curve_python.png'):
+def create_sir_visualization(results, save_path='results/sir_curve_corrected.png'):
     """
-    Create professional SIR curve visualization
-    Enhanced version of Excel chart with better styling
+    Create professional SIR curve visualization with CORRECT results
     """
-    fig, ax = plt.subplots(figsize=(12, 8))
+    plt.figure(figsize=(12, 8))
     
-    # Plot SIR curves
-    ax.plot(results['Day'], results['Susceptible'], 'b-', linewidth=3, label='Susceptible', alpha=0.8)
-    ax.plot(results['Day'], results['Infected'], 'r-', linewidth=3, label='Infected', alpha=0.8)
-    ax.plot(results['Day'], results['Recovered'], 'g-', linewidth=3, label='Recovered', alpha=0.8)
+    # Plot SIR curves with proper styling
+    plt.plot(results['Day'], results['Susceptible'], 'b-', linewidth=3, label='Susceptible', alpha=0.8)
+    plt.plot(results['Day'], results['Infected'], 'r-', linewidth=3, label='Infected', alpha=0.8)
+    plt.plot(results['Day'], results['Recovered'], 'g-', linewidth=3, label='Recovered', alpha=0.8)
     
-    # Styling
-    ax.set_xlabel('Days', fontsize=14, fontweight='bold')
-    ax.set_ylabel('Population', fontsize=14, fontweight='bold')
-    ax.set_title('SIR Pandemic Model: Disease Progression Over Time\nPython Recreation of Georgia Tech Excel Analysis', 
-                fontsize=16, fontweight='bold', pad=20)
+    # Professional styling
+    plt.xlabel('Days', fontsize=14, fontweight='bold')
+    plt.ylabel('Population', fontsize=14, fontweight='bold')
+    plt.title('Corrected SIR Pandemic Model: Realistic Disease Progression\nGeorgia Tech ISYE 6644 - Proper Implementation (β=0.5, γ=0.1)', 
+                fontsize=14, fontweight='bold', pad=20)
     
     # Add grid and legend
-    ax.grid(True, alpha=0.3)
-    ax.legend(fontsize=12, loc='center right')
+    plt.grid(True, alpha=0.3)
+    plt.legend(fontsize=12, loc='center right')
     
-    # Add annotations for key insights
+    # Find and annotate peak with CORRECT values
     peak_day = results.loc[results['Infected'].idxmax(), 'Day']
     peak_infections = results['Infected'].max()
     
-    ax.annotate(f'Peak Infection\nDay {int(peak_day)}: {int(peak_infections)} cases',
+    plt.annotate(f'Peak Infection\nDay {int(peak_day)}: {int(peak_infections)} cases\n({peak_infections/1000:.1%} of population)',
                 xy=(peak_day, peak_infections), 
                 xytext=(peak_day + 15, peak_infections + 50),
                 arrowprops=dict(arrowstyle='->', color='red', alpha=0.7),
-                fontsize=10, ha='center',
-                bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8))
+                fontsize=11, ha='center',
+                bbox=dict(boxstyle="round,pad=0.5", facecolor="white", alpha=0.9, edgecolor='red'))
+    
+    # Add R0 information
+    R0 = 0.5 / 0.1  # β/γ
+    plt.text(0.02, 0.98, f'Basic Reproduction Number (R₀): {R0:.1f}\nRealistic epidemic parameters', 
+            transform=plt.gca().transAxes, fontsize=10, verticalalignment='top',
+            bbox=dict(boxstyle="round,pad=0.3", facecolor="lightblue", alpha=0.7))
     
     plt.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
     plt.show()
+    print(f"✅ SIR curve saved to {save_path}")
 
-def create_binomial_analysis(n=20, p=0.02, save_path='results/binomial_analysis_python.png'):
+def create_binomial_analysis(n=20, p=0.02, save_path='results/binomial_analysis_corrected.png'):
     """
-    Classroom infection probability analysis
-    Enhanced version of Excel binomial distribution
+    Classroom infection probability analysis (unchanged - this was correct)
     """
     # Calculate probabilities for all possible outcomes
     k_values = np.arange(0, n+1)
@@ -93,6 +99,7 @@ def create_binomial_analysis(n=20, p=0.02, save_path='results/binomial_analysis_
     plt.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
     plt.show()
+    print(f"✅ Binomial analysis saved to {save_path}")
     
     # Print key statistics
     print("Classroom Infection Analysis (Binomial Distribution)")
@@ -103,83 +110,103 @@ def create_binomial_analysis(n=20, p=0.02, save_path='results/binomial_analysis_
     print(f"Probability of no infections: {probabilities[0]:.4f}")
     print(f"Probability of 1+ infections: {1-probabilities[0]:.4f}")
 
-def create_comparison_dashboard(results, save_path='results/comparison_dashboard.png'):
+def create_corrected_dashboard(results, save_path='results/corrected_dashboard.png'):
     """
-    Comprehensive dashboard comparing discrete vs continuous solutions
+    Comprehensive dashboard with CORRECTED model results
     """
     from sir_model import SIRModel
     
-    # Get continuous solution for comparison  
-    model = SIRModel()
-    continuous_results = model.solve_model(t_max=75, t_points=76)
-    
-    # Create comparison plots
+    # Create comparison plots with better spacing
     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(16, 12))
     
-    # SIR Curves Comparison
-    days_discrete = results['Day'][:36]  # First 36 days like Excel
-    ax1.plot(days_discrete, results['Susceptible'][:36], 'b-', label='Susceptible', linewidth=2)
-    ax1.plot(days_discrete, results['Infected'][:36], 'r-', label='Infected', linewidth=2) 
-    ax1.plot(days_discrete, results['Recovered'][:36], 'g-', label='Recovered', linewidth=2)
-    ax1.set_title('SIR Model: Disease Progression (First 36 Days)', fontweight='bold')
-    ax1.set_xlabel('Days')
-    ax1.set_ylabel('Population')
-    ax1.legend()
+    # Main title with better positioning
+    fig.suptitle('SIR Model: Corrected Analysis Dashboard', 
+                fontsize=18, fontweight='bold', y=0.95)
+    fig.text(0.5, 0.91, 'Georgia Tech ISYE 6644 - Realistic Epidemiological Parameters', 
+             ha='center', fontsize=14, style='italic', color='darkblue')
+    
+    # SIR Curves (First 60 days)
+    days_subset = results['Day'][:60]
+    ax1.plot(days_subset, results['Susceptible'][:60], 'b-', label='Susceptible', linewidth=3, alpha=0.8)
+    ax1.plot(days_subset, results['Infected'][:60], 'r-', label='Infected', linewidth=3, alpha=0.8) 
+    ax1.plot(days_subset, results['Recovered'][:60], 'g-', label='Recovered', linewidth=3, alpha=0.8)
+    ax1.set_title('Corrected SIR Model: Realistic Epidemic Progression', fontweight='bold', fontsize=12)
+    ax1.set_xlabel('Days', fontweight='bold')
+    ax1.set_ylabel('Population', fontweight='bold')
+    ax1.legend(frameon=True, fancybox=True, shadow=True)
     ax1.grid(True, alpha=0.3)
     
     # Phase Portrait
-    ax2.plot(results['Susceptible'], results['Infected'], 'purple', linewidth=2)
-    ax2.set_title('SIR Phase Portrait (S vs I)', fontweight='bold')
-    ax2.set_xlabel('Susceptible Population')
-    ax2.set_ylabel('Infected Population')
+    ax2.plot(results['Susceptible'], results['Infected'], 'purple', linewidth=3, alpha=0.8)
+    ax2.scatter(results['Susceptible'].iloc[0], results['Infected'].iloc[0], 
+               color='green', s=100, label='Start', zorder=5)
+    peak_idx = results['Infected'].idxmax()
+    ax2.scatter(results['Susceptible'].iloc[peak_idx], results['Infected'].iloc[peak_idx], 
+               color='red', s=100, label=f'Peak (Day {peak_idx})', zorder=5)
+    ax2.set_title('SIR Phase Portrait (S vs I)', fontweight='bold', fontsize=12)
+    ax2.set_xlabel('Susceptible Population', fontweight='bold')
+    ax2.set_ylabel('Infected Population', fontweight='bold')
+    ax2.legend(frameon=True, fancybox=True, shadow=True)
     ax2.grid(True, alpha=0.3)
     
-    # Parameter Sensitivity
+    # Parameter Sensitivity - Transmission Rate
+    colors = ['#2ecc71', '#f39c12', '#e74c3c']  # Green, Orange, Red
     betas = [0.3, 0.5, 0.7]
-    for beta in betas:
+    for i, beta in enumerate(betas):
         model_sens = SIRModel(beta=beta)
-        results_sens = model_sens.discrete_simulation(days=75)
+        results_sens = model_sens.discrete_simulation(days=60)
         ax3.plot(results_sens['Day'], results_sens['Infected'], 
-                label=f'β={beta}', linewidth=2)
-    ax3.set_title('Sensitivity Analysis: Transmission Rate (β)', fontweight='bold')
-    ax3.set_xlabel('Days') 
-    ax3.set_ylabel('Infected Population')
-    ax3.legend()
+                color=colors[i], label=f'β={beta}', linewidth=3, alpha=0.8)
+    ax3.set_title('Sensitivity Analysis: Transmission Rate (β)', fontweight='bold', fontsize=12)
+    ax3.set_xlabel('Days', fontweight='bold') 
+    ax3.set_ylabel('Infected Population', fontweight='bold')
+    ax3.legend(frameon=True, fancybox=True, shadow=True)
     ax3.grid(True, alpha=0.3)
     
-    # Recovery Rate Analysis
+    # Parameter Sensitivity - Recovery Rate
+    colors = ['#e67e22', '#3498db', '#9b59b6']  # Orange, Blue, Purple
     gammas = [0.05, 0.1, 0.15]
-    for gamma in gammas:
+    for i, gamma in enumerate(gammas):
         model_rec = SIRModel(gamma=gamma)
-        results_rec = model_rec.discrete_simulation(days=75)
+        results_rec = model_rec.discrete_simulation(days=60)
         ax4.plot(results_rec['Day'], results_rec['Infected'], 
-                label=f'γ={gamma}', linewidth=2)
-    ax4.set_title('Sensitivity Analysis: Recovery Rate (γ)', fontweight='bold')
-    ax4.set_xlabel('Days')
-    ax4.set_ylabel('Infected Population') 
-    ax4.legend()
+                color=colors[i], label=f'γ={gamma}', linewidth=3, alpha=0.8)
+    ax4.set_title('Sensitivity Analysis: Recovery Rate (γ)', fontweight='bold', fontsize=12)
+    ax4.set_xlabel('Days', fontweight='bold')
+    ax4.set_ylabel('Infected Population', fontweight='bold') 
+    ax4.legend(frameon=True, fancybox=True, shadow=True)
     ax4.grid(True, alpha=0.3)
     
-    plt.suptitle('SIR Model: Comprehensive Analysis Dashboard\nGeorgia Tech ISYE 6644 - Advanced Analytics', 
-                fontsize=16, fontweight='bold', y=0.95)
-    plt.tight_layout()
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    # Adjust layout
+    plt.subplots_adjust(top=0.88, hspace=0.3, wspace=0.25)
+    
+    # Save with high quality
+    plt.savefig(save_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.show()
+    print(f"✅ Dashboard saved to {save_path}")
 
 if __name__ == "__main__":
     # Import and run SIR model
     from sir_model import SIRModel
     
-    print("Creating enhanced visualizations...")
+    print("🎨 Creating corrected visualizations...")
+    print("=" * 40)
     
-    # Run model
-    model = SIRModel()
+    # Run corrected model
+    model = SIRModel(population=1000, initial_infected=1, beta=0.5, gamma=0.1)
     results = model.discrete_simulation(days=75)
+    
+    # Get summary for verification
+    summary = model.get_epidemic_summary(results)
+    print(f"📈 Peak: Day {summary['Peak Infection Day']}, {summary['Peak Infections']} cases")
+    print(f"📊 R₀: {summary['Basic Reproduction Number (R0)']}")
+    print()
     
     # Generate all visualizations
     create_sir_visualization(results)
     create_binomial_analysis()  
-    create_comparison_dashboard(results)
+    create_corrected_dashboard(results)
     
-    print("All visualizations created successfully!")
-    print("Files saved to results/ directory")
+    print("\n🎉 All corrected visualizations created successfully!")
+    print("📁 Files saved to results/ directory")
+    print("✅ Models now show realistic epidemiological behavior")
